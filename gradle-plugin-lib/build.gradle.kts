@@ -8,7 +8,7 @@ gradlePlugin {
     plugins {
         create("gradlePlugin") {
             group = "com.ww.plugin"
-            version = "1.0.0"
+            version = "1.0.2"
             id = "com.ww.plugin.track"
             implementationClass = "com.ww.gradle.plugin.AsmTrackPlugin"
         }

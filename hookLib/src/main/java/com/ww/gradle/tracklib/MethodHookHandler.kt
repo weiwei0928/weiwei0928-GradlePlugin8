@@ -1,7 +1,7 @@
 package com.ww.gradle.tracklib
 
 
-@IgnoreTrace
+@IgnoreInject
 object MethodHookHandler {
     /**
      * 如果设置了impl参数，则此对象实现将被编译期替换

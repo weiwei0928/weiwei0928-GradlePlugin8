@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * @Author weiwei
  * @Date 2024/11/23 18:33
  */
-@IgnoreTrace
+@IgnoreInject
 class SampleMethodHook : IMethodHookHandler {
     private var filter: LogFilter? = null
 
@@ -16,7 +16,7 @@ class SampleMethodHook : IMethodHookHandler {
         this.filter = filter
     }
 
-    @IgnoreTrace
+    @IgnoreInject
     internal class InnerClass(var time: Long?) {
         var integer: AtomicInteger = AtomicInteger(1)
     }

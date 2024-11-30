@@ -21,10 +21,7 @@ object ClassHandler {
         val classReader = ClassReader(inputStream)
         val classNode = ClassNode()
         classReader.accept(classNode, 0)
-        if (NotTrackUtils.isNotTrackByAnnotation(classNode) || NotTrackUtils.isNotTrackByConfig(
-                classNode
-            )
-        ) {
+        if (InjectUtils.notInjectByAnnotation(classNode) || InjectUtils.isNotInjectByConfig(classNode)) {
             inputStream.close()
             return
         }
@@ -67,11 +64,11 @@ object ClassHandler {
         classReader.accept(classNode, 0) //开始读取
 
         when {
-            NotTrackUtils.isNotTrackByConfig(entryName) -> {
+            InjectUtils.isNotInjectByConfig(entryName) -> {
                 return byteArray
             }
 
-            NotTrackUtils.isNotTrackByAnnotation(classNode) -> {
+            InjectUtils.notInjectByAnnotation(classNode) -> {
                 return byteArray
             }
 

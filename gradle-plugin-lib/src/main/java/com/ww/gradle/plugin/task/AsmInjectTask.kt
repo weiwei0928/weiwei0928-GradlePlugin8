@@ -2,7 +2,7 @@ package com.ww.gradle.plugin.task
 
 import com.ww.gradle.plugin.MethodHookConfig
 import com.ww.gradle.plugin.util.ClassHandler
-import com.ww.gradle.plugin.TraceClassLoader
+import com.ww.gradle.plugin.InjectClassLoader
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.file.Directory
@@ -20,7 +20,7 @@ import java.util.jar.JarFile
 import java.util.jar.JarOutputStream
 
 
-abstract class AsmTraceTask : DefaultTask() {
+abstract class AsmInjectTask : DefaultTask() {
 
     //所有的jar文件输入信息
     @get:InputFiles
@@ -103,7 +103,7 @@ abstract class AsmTraceTask : DefaultTask() {
         allJars.get().forEach { jarInput ->
             inputFiles.add(jarInput.asFile)
         }
-        return TraceClassLoader.getClassLoader(project, inputFiles)
+        return InjectClassLoader.getClassLoader(project, inputFiles)
     }
 
 

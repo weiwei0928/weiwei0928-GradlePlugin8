@@ -9,7 +9,7 @@ import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLClassLoader
 
-object TraceClassLoader {
+object InjectClassLoader {
     @JvmStatic
     @Throws(MalformedURLException::class)
     fun getClassLoader(project: Project, inputFiles: Collection<File>): URLClassLoader {

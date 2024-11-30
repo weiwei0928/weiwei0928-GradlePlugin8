@@ -1,13 +1,16 @@
 package com.ww.gradle.gradleplugin8
 
 import android.os.Trace
+import com.ww.gradle.tracklib.IgnoreInject
 import kotlin.math.sqrt
 
 /**
  * @Author weiwei
  * @Date 2024/11/24 20:51
  */
-object TraceTest {
+@IgnoreInject
+object InjectTest {
+
 
     fun test() {
         val name = Trace.beginSection("开始处理")

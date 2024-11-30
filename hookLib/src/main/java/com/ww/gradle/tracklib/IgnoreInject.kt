@@ -6,4 +6,4 @@ package com.ww.gradle.tracklib
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.BINARY)
 @MustBeDocumented
-annotation class IgnoreTrace()
+annotation class IgnoreInject()

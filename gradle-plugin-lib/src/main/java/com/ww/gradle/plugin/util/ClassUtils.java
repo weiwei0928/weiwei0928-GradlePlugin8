@@ -1,18 +1,15 @@
 package com.ww.gradle.plugin.util;
 
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author weiwei
  * @Date 2024/11/25 23:35
  */
-
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
-
-import java.util.HashMap;
-import java.util.Map;
-
-
 final class ClassUtils {
 
     private static Map<Integer, Integer> storeOps = new HashMap<Integer, Integer>();

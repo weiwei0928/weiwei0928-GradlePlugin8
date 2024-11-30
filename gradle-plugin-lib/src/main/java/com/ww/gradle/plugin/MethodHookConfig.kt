@@ -10,11 +10,12 @@ open class MethodHookConfig {
      * true 项目范围，不包括导入的项目或外部依赖项。
      * false 完整范围，包括项目范围、导入的项目和所有外部依赖关系。
      */
-    var scopeAll: Boolean = true
+    var scopeAll: Boolean = false
+
     /**
      * 是否启用代码插桩
      */
-    var enableHook: Boolean = true
+    var enableHook: Boolean = false
 
     /**
      * 是否将所有的方法都统计，否则只统计注解和正则设置的

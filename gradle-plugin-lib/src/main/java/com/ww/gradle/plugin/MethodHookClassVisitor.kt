@@ -16,16 +16,15 @@ class MethodHookClassVisitor(
     private var isInterface: Boolean = false
     private lateinit var className: String
 
-    private val isInject: Boolean
-        get() {
-            if (!config.enableHook) {
-                return false
-            }
-            if (config.hookAll) {
-                return true
-            }
+    private fun isInject(): Boolean {
+        if (!config.enableHook) {
             return false
         }
+        if (config.hookAll) {
+            return true
+        }
+        return false
+    }
 
     override fun visit(
         version: Int,
@@ -56,7 +55,6 @@ class MethodHookClassVisitor(
         return if (isInterface || isAbstractMethod || isNativeMethod || isConstructor) {
             mv
         } else {
-            // Returning the custom MethodEnterAndExitAdapter
             MethodEnterAndExitAdapter(api, mv, access, name, descriptor, className)
         }
     }
@@ -92,15 +90,8 @@ class MethodHookClassVisitor(
         // Called when the method is exited
         override fun onMethodExit(opcode: Int) {
             super.onMethodExit(opcode)
+            //即返回int、long、float、double、reference类型
             if ((opcode >= Opcodes.IRETURN && opcode < Opcodes.RETURN)) {
-//                if (returnType.sort == Type.LONG || returnType.sort == Type.DOUBLE) {
-//                    mv.visitInsn(DUP2)
-//                } else {
-//                    mv.visitInsn(DUP)
-//                }
-//                ClassUtils.autoBox(mv, returnType)
-//                getArgs()
-
                 mv.visitLdcInsn(className)
                 mv.visitLdcInsn(methodName)
                 mv.visitMethodInsn(
@@ -110,8 +101,7 @@ class MethodHookClassVisitor(
                     false
                 )
 
-                // 重新生成返回指令
-//                mv.visitInsn(opcode)
+                //即void类型返回
             } else if (opcode == RETURN) {
                 mv.visitInsn(ACONST_NULL)
 //                getArgs()
@@ -124,8 +114,8 @@ class MethodHookClassVisitor(
                     false
                 )
             }
-                // 重新生成返回指令
-                mv.visitInsn(opcode)
+            // 重新生成返回指令
+            mv.visitInsn(opcode)
         }
 
         override fun visitMaxs(maxStack: Int, maxLocals: Int) {
@@ -135,7 +125,6 @@ class MethodHookClassVisitor(
 
         override fun visitCode() {
             super.visitCode()
-//            mv.visitInsn(Opcodes.NOP)
         }
 
         override fun visitInsn(opcode: Int) {

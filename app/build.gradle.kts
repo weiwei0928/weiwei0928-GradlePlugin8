@@ -1,9 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.ww.plugin.track") version "1.0.0"
+    id("com.ww.plugin.track") version "1.0.2"
 }
-
+methodHookConfig {
+    enableHook = true
+    scopeAll = true
+}
 android {
     namespace = "com.ww.gradle.gradleplugin8"
     compileSdk = 34
@@ -56,7 +59,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":hookLib"))
+//    implementation(project(":hookLib"))
+    implementation("com.ww.gradle:hookLib:1.0.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.lifecycle.runtime.ktx)
