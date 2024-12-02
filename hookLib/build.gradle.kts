@@ -52,7 +52,10 @@ publishing {
 }
 
 dependencies {
-
+    api("org.ow2.asm:asm:9.2")
+    api("org.ow2.asm:asm-commons:9.2")
+    api("org.ow2.asm:asm-tree:9.2")
+    api("org.ow2.asm:asm-util:9.2")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

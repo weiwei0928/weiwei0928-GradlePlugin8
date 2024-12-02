@@ -27,6 +27,9 @@ dependencies {
     implementation("com.android.tools.build:gradle:8.6.0")
     implementation("org.ow2.asm:asm:9.2")
     implementation("org.ow2.asm:asm-commons:9.2")
+    implementation("org.ow2.asm:asm-tree:9.2")
+    implementation("org.ow2.asm:asm-util:9.2")
+
     implementation(kotlin("stdlib-jdk8"))
 }
 
