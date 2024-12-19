@@ -1,7 +1,8 @@
 plugins {
     id("java-gradle-plugin") //会自动引入java-library、gradleApi()
     id("maven-publish") //maven发布插件
-    kotlin("jvm") version "1.8.10"//支持kotlin编写插件
+//    kotlin("jvm") version "1.8.10"//支持kotlin编写插件
+    kotlin("jvm")
 }
 
 gradlePlugin {
@@ -17,9 +18,10 @@ gradlePlugin {
 
 publishing {
     repositories {
-        maven {
-            url = uri("../repo")
-        }
+        mavenLocal()
+//        maven {
+//            url = uri("../repo")
+//        }
     }
 }
 
@@ -30,18 +32,18 @@ dependencies {
     implementation("org.ow2.asm:asm-tree:9.2")
     implementation("org.ow2.asm:asm-util:9.2")
 
-    implementation(kotlin("stdlib-jdk8"))
+//    implementation(kotlin("stdlib-jdk8"))
 }
 
-repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-}
+//repositories {
+//    google()
+//    mavenCentral()
+//    gradlePluginPortal()
+//}
 
 //kotlinOptions {
 //    jvmTarget = "1.8"
 //}
-kotlin {
-    jvmToolchain(11)
-}
+//kotlin {
+//    jvmToolchain(11)
+//}

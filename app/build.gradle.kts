@@ -1,12 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.ww.plugin.track") version "1.0.2"
+//    id("com.ww.plugin.track")
 }
-methodHookConfig {
-    enableHook = true
-    scopeAll = true
-}
+//methodHookConfig {
+//    enableHook = true
+//    scopeAll = true
+//}
 android {
     namespace = "com.ww.gradle.gradleplugin8"
     compileSdk = 34
@@ -75,7 +75,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 //    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+//    androidTestImplementation(libs.androidx.ui.test.junit4)
 //    debugImplementation(libs.androidx.ui.tooling)
 //    debugImplementation(libs.androidx.ui.test.manifest)
 }

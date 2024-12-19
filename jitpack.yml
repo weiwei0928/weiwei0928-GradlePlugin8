@@ -1,5 +1,13 @@
 jdk:
   - openjdk17
+
+before_install:
+  - chmod +x gradlew # 确保 gradlew 是可执行的
+
+install: ./gradlew clean build publishToMavenLocal --stacktrace --info
+
+publish:
+  pom.xml: true
 #before_install:
 #  - sdk install java 17-open
 #  - sdk use java 17-open
