@@ -7,6 +7,6 @@ package com.ww.gradle.tracklib;
 public class ASMPrintTest {
 
     public void test() {
-        MethodHookHandler.exit("ASMTest", "test");
+        MethodHookHandler.exit("ASMTest", "test", "test", "test");
     }
 }

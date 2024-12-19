@@ -67,14 +67,13 @@ abstract class AsmInjectTask : DefaultTask() {
             val jarFile = JarFile(jarInputFile.asFile)
             jarFile.entries().iterator().forEach { jarEntry ->
                 //过滤掉非class文件，并去除重复无效的META-INF文件
-                if (jarEntry.name.endsWith(".class") && !jarEntry.name.contains("META-INF")) {
+                if (jarEntry.name.endsWith(".class") && !jarEntry.name.contains("META-INF") && !jarEntry.name.equals("module-info.class")) {
                     val outByteArray =
                         ClassHandler.handleClassInJar(classLoader, jarFile, jarEntry, config)
                     jarOutput.putNextEntry(JarEntry(jarEntry.name))
                     jarOutput.write(outByteArray)
                     jarOutput.closeEntry()
                 } else {
-                    // META-INF 不用写入，否则会duplicate error
 //                    jarOutput.putNextEntry(JarEntry(jarEntry.name))
 //                    jarOutput.write(jarFile.getInputStream(jarEntry).readBytes())
 //                    jarOutput.closeEntry()

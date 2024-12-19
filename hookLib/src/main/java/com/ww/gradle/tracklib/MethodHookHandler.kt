@@ -9,12 +9,12 @@ object MethodHookHandler {
     private val M_PRINT: IMethodHookHandler = SampleMethodHook()
 
     @JvmStatic
-    fun enter(className: String?, methodName: String?) {
-        return M_PRINT.onMethodEnter(className, methodName)
+    fun enter(className: String?, methodName: String?, argsType: String?, returnType: String?) {
+        return M_PRINT.onMethodEnter(className, methodName, argsType,returnType)
     }
 
     @JvmStatic
-    fun exit(className: String?, methodName: String?) {
-        M_PRINT.onMethodReturn(className, methodName)
+    fun exit(className: String?, methodName: String?, argsType: String?, returnType: String?) {
+        M_PRINT.onMethodReturn(className, methodName, argsType, returnType)
     }
 }

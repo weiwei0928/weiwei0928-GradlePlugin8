@@ -16,18 +16,18 @@ import java.util.jar.JarFile
 
 object ClassHandler {
 
-    fun handleClassInDirectory(classLoader_: ClassLoader, inFile: File, config: MethodHookConfig) {
+    fun handleClassInDirectory(classLoader: ClassLoader, inFile: File, config: MethodHookConfig) {
         val inputStream: InputStream = FileInputStream(inFile)
         val classReader = ClassReader(inputStream)
         val classNode = ClassNode()
         classReader.accept(classNode, 0)
-        if (InjectUtils.notInjectByAnnotation(classNode) || InjectUtils.isNotInjectByConfig(classNode)) {
+        if (InjectUtils.notInjectByAnnotation(classNode) || InjectUtils.isNotInjectByPackageNameOrClassName(classNode)) {
             inputStream.close()
             return
         }
         val classWriter = object : ClassWriter(classReader, COMPUTE_FRAMES) {
             override fun getClassLoader(): ClassLoader {
-                return classLoader_
+                return classLoader
             }
         }
         try {
@@ -48,7 +48,7 @@ object ClassHandler {
     }
 
     fun handleClassInJar(
-        classLoader_: ClassLoader,
+        classLoader: ClassLoader,
         jarFile: JarFile,
         jarEntry: JarEntry,
         config: MethodHookConfig
@@ -64,7 +64,7 @@ object ClassHandler {
         classReader.accept(classNode, 0) //开始读取
 
         when {
-            InjectUtils.isNotInjectByConfig(entryName) -> {
+            InjectUtils.isNotInjectByPackageNameOrClassName(entryName) -> {
                 return byteArray
             }
 
@@ -75,7 +75,7 @@ object ClassHandler {
             else -> {
                 val classWriter = object : ClassWriter(classReader, COMPUTE_FRAMES) {
                     override fun getClassLoader(): ClassLoader {
-                        return classLoader_
+                        return classLoader
                     }
                 }
                 try {

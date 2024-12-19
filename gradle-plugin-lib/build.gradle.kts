@@ -38,6 +38,10 @@ repositories {
     mavenCentral()
     gradlePluginPortal()
 }
+
+//kotlinOptions {
+//    jvmTarget = "1.8"
+//}
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(11)
 }

@@ -2,17 +2,15 @@ package com.ww.gradle.gradleplugin8;
 
 import android.app.Application;
 
-/**
- * @author Hdq on 2022/11/21.
- */
+//import com.ww.gradle.tracklib.MethodHookHandler;
+
 public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
-//        Trace.beginSection("MyApplication.onCreate");
+//        MethodHookHandler.enter("MyApplication", "onCreate","","");
         super.onCreate();
-
-//        Trace.endSection();
+//        MethodHookHandler.exit("MyApplication", "onCreate","","");
     }
 
 }

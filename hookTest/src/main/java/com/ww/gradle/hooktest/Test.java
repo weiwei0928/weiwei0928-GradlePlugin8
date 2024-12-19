@@ -11,10 +11,10 @@ public class Test {
         Thread.sleep(200L);
     }
 
-    public void test2() throws InterruptedException {
+    public int test2() throws InterruptedException {
         System.out.println("Hello World");
         Thread.sleep(300L);
-
+        return 222;
 
 
     }

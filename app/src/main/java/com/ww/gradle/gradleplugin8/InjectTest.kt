@@ -1,14 +1,13 @@
 package com.ww.gradle.gradleplugin8
 
 import android.os.Trace
-import com.ww.gradle.tracklib.IgnoreInject
 import kotlin.math.sqrt
 
 /**
  * @Author weiwei
  * @Date 2024/11/24 20:51
  */
-@IgnoreInject
+//@IgnoreInject
 object InjectTest {
 
 
@@ -20,5 +19,10 @@ object InjectTest {
 
         Thread.sleep(2000)
         Trace.endSection()
+    }
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+//        ASMPrintUtil.printClass("com.ww.gradle.gradleplugin8.MyApplication")
     }
 }

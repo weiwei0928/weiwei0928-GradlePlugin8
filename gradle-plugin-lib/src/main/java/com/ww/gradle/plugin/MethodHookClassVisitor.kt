@@ -36,8 +36,8 @@ class MethodHookClassVisitor(
     ) {
         super.visit(version, access, name, signature, superName, interfaces)
         isInterface = (access and Opcodes.ACC_INTERFACE) != 0
-        className =
-            name.substring(name.lastIndexOf(File.separator) + 1) // Extract class name from the full path
+        className = name
+//            name.substring(name.lastIndexOf(File.separator) + 1)
     }
 
     override fun visitMethod(
@@ -76,13 +76,19 @@ class MethodHookClassVisitor(
 
             // Insert trace start logic
             println("======================  name = $className ===== $methodName")
+            argsTypes.forEach {
+                println("======================  argType = $it")
+            }
+            println("======================  returnType = $returnType ")
             mv.visitLdcInsn(className)
             mv.visitLdcInsn(methodName)
+            mv.visitLdcInsn(getArgsType())//argsTypes
+            mv.visitLdcInsn(returnType.className)//returntype
             mv.visitMethodInsn(
                 INVOKESTATIC,
                 "com/ww/gradle/tracklib/MethodHookHandler",
                 "enter",
-                "(Ljava/lang/String;Ljava/lang/String;)V",
+                "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                 false
             )
         }
@@ -94,10 +100,12 @@ class MethodHookClassVisitor(
             if ((opcode >= Opcodes.IRETURN && opcode < Opcodes.RETURN)) {
                 mv.visitLdcInsn(className)
                 mv.visitLdcInsn(methodName)
+                mv.visitLdcInsn(getArgsType())//argsTypes
+                mv.visitLdcInsn(returnType.className)//returntype
                 mv.visitMethodInsn(
                     INVOKESTATIC, "com/ww/gradle/tracklib/MethodHookHandler",
                     "exit",
-                    "(Ljava/lang/String;Ljava/lang/String;)V",
+                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                     false
                 )
 
@@ -107,10 +115,12 @@ class MethodHookClassVisitor(
 //                getArgs()
                 mv.visitLdcInsn(className)
                 mv.visitLdcInsn(methodName)
+                mv.visitLdcInsn(getArgsType())//argsTypes
+                mv.visitLdcInsn(returnType.className)//returntype
                 mv.visitMethodInsn(
                     INVOKESTATIC, "com/ww/gradle/tracklib/MethodHookHandler",
                     "exit",
-                    "(Ljava/lang/String;Ljava/lang/String;)V",
+                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                     false
                 )
             }

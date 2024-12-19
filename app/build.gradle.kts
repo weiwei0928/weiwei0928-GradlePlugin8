@@ -60,7 +60,8 @@ android {
 
 dependencies {
 //    implementation(project(":hookLib"))
-    implementation("com.ww.gradle:hookLib:1.0.0")
+//    implementation(project(":hookTest"))
+//    implementation(libs.hooklib)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.lifecycle.runtime.ktx)

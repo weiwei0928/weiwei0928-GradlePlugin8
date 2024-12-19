@@ -12,17 +12,10 @@ object InjectUtils {
         "/BuildConfig.class",
     )
 
-    /**
-     * 不需要插桩的包
-     * 配置格式：例：package = kotlin/jvm/internal/
-     */
-    private val UN_NEED_TRACE_PACKAGE = arrayOf("kotlin/","androidx/")
+    //默认无需插桩的包
+    private val UN_NEED_TRACE_PACKAGE = arrayOf("kotlin/", "androidx/")
 
 
-    /**
-     * @param fileName 格式：
-     * 例：fileName = kotlin/jvm/internal/Intrinsics.class
-     */
     private fun isNeedInjectClass(fileName: String): Boolean {
         var isNeed = true
         if (fileName.endsWith(".class")) {
@@ -44,29 +37,25 @@ object InjectUtils {
         return isNeed
     }
 
-    /**
-     * @return true:不插桩
-     */
-    fun isNotInjectByConfig(classNode: ClassNode): Boolean {
-        return isNotInjectByConfig("${classNode.name}.class")
+    fun isNotInjectByPackageNameOrClassName(classNode: ClassNode): Boolean {
+        return isNotInjectByPackageNameOrClassName("${classNode.name}.class")
     }
 
     /**
-     * @param fileName 格式：
-     * 例：fileName = kotlin/jvm/internal/Intrinsics.class
+     * @param fileName
      * @return true:不插桩
      */
-    fun isNotInjectByConfig(fileName: String): Boolean {
-        return if (isNeedInjectClass(fileName)) {
-            false
+    fun isNotInjectByPackageNameOrClassName(fileName: String): Boolean {
+        if (isNeedInjectClass(fileName)) {
+            return false
         } else {
             println("------class文件不插桩：$fileName")
-            true
+            return true
         }
     }
 
     /**
-     * 用注解 com.ww.gradle.tracklib.NotTrack 注释的类，不插桩
+     * 用注解 com.ww.gradle.tracklib.IgnoreInject 注释的类，不插桩
      * @return true:不插桩
      */
     fun notInjectByAnnotation(classNode: ClassNode): Boolean {
@@ -82,8 +71,4 @@ object InjectUtils {
         }
         return false
     }
-//    fun isNotTrackReg(classNode: ClassNode): Boolean {
-//
-//    }
-
 }

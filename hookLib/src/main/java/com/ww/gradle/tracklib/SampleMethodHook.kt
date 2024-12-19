@@ -28,7 +28,12 @@ class SampleMethodHook : IMethodHookHandler {
     }
 
 
-    override fun onMethodEnter(className: String?, methodName: String?) {
+    override fun onMethodEnter(
+        className: String?,
+        methodName: String?,
+        argsType: String?,
+        returnType: String?
+    ) {
         val name = className + methodName
         var map = local.get()
         if (map == null) {
@@ -46,7 +51,12 @@ class SampleMethodHook : IMethodHookHandler {
         return
     }
 
-    override fun onMethodReturn(className: String?, methodName: String?) {
+    override fun onMethodReturn(
+        className: String?,
+        methodName: String?,
+        argsType: String?,
+        returnType: String?
+    ) {
         val name = className + methodName
         val map: HashMap<String?, Any>? = local.get()
         var data: InnerClass? = null
@@ -74,6 +84,8 @@ class SampleMethodHook : IMethodHookHandler {
                 .append("\n║ [Thread]:").append(Thread.currentThread().name)
                 .append("\n║ [Class]:").append(className)
                 .append("\n║ [Method]:").append(methodName)
+                .append("\n║ [argsType]:").append(argsType)
+                .append("\n║ [returnType]:").append(returnType)
                 .append("\n║ [Time]:").append(time).append(" ms")
                 .append("\n╚").append(LINE)
             val msg = msgBuilder.toString()
