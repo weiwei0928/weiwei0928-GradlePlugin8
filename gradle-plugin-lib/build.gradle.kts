@@ -9,7 +9,7 @@ gradlePlugin {
     plugins {
         create("gradlePlugin") {
             group = "com.ww.plugin"
-            version = "1.0.2"
+            version = "1.0.4"
             id = "com.ww.plugin.track"
             implementationClass = "com.ww.gradle.plugin.AsmTrackPlugin"
         }
@@ -26,7 +26,8 @@ publishing {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:8.6.0")
+//    implementation("com.android.tools.build:gradle:8.6.0")
+    implementation("com.android.tools.build:gradle:7.4.2")
     implementation("org.ow2.asm:asm:9.2")
     implementation("org.ow2.asm:asm-commons:9.2")
     implementation("org.ow2.asm:asm-tree:9.2")

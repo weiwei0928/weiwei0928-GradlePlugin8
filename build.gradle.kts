@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-//        classpath("com.ww.plugin:gradle-plugin-lib:1.0.2")
+//        classpath("com.ww.plugin:gradle-plugin-lib:1.0.4")
     }
 }
 

@@ -30,7 +30,7 @@
 
    ```kotlin
    dependencies {
-       classpath 'com.github.weiwei0928:gradle8:1.0.0' //旧版本gradle依赖插件仓库
+       classpath 'com.github.weiwei0928:gradle8:1.0.3' //依赖插件仓库
    }
    ```
 
@@ -46,7 +46,6 @@
 
    ```.kotlin
    plugins {
-       id("com.ww.plugin.track") version "1.0.2" //或
        id("com.ww.plugin.track")
    }
    ```
@@ -54,14 +53,14 @@
 3. 在dependencies添加指定依赖
 
    ```groovy
-   implementation 'com.github.weiwei0928:hooklib:1.0.0'
+   implementation 'com.github.weiwei0928:hooklib:1.0.3'
    ```
 
 4. 设置hook插件的配置参数
 
    ```kotlin
    hook {
-     	enableHook = true//是否启用代码插桩
+       ableHook = true//是否启用代码插桩
        scopeAll = true //是否将所有的方法都插桩，否则只插桩当前项目工程
    }
    
