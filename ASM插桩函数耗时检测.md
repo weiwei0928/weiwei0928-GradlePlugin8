@@ -59,7 +59,7 @@
 4. 设置hook插件的配置参数
 
    ```kotlin
-   hook {
+   methodHookConfig {
        enableHook = true//是否启用代码插桩
        scopeAll = true //是否将所有的方法都插桩，否则只插桩当前项目工程
    }
